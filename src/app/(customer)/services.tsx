@@ -49,12 +49,6 @@ export default function CustomerServiceSelectionScreen() {
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        
-        {/* Intro */}
-        <View style={styles.introSection}>
-          <Text style={styles.headline}>Bespoke Grooming</Text>
-          <Text style={styles.subtitle}>Select the services you would like to book</Text>
-        </View>
 
         {/* Counter Header */}
         <View style={styles.counterRow}>

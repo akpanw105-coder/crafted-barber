@@ -103,9 +103,11 @@ export default function CustomerWelcomeSignInScreen() {
             <Text style={styles.headline}>
               {isSignUp ? 'Create Membership' : 'Welcome'}
             </Text>
-            <Text style={styles.tagline}>
-              Bespoke grooming sanctuary and atelier
-            </Text>
+            {!isSignUp && (
+              <Text style={styles.tagline}>
+                Bespoke grooming sanctuary and atelier
+              </Text>
+            )}
           </View>
 
           {/* Form */}
@@ -357,6 +359,8 @@ const styles = StyleSheet.create({
     color: StitchColors.onSurface,
     fontFamily: StitchTypography.sans,
     fontSize: 14,
+    // Suppress the browser's blue focus outline on web
+    ...(typeof document !== 'undefined' ? ({ outlineWidth: 0 } as any) : {}),
   },
   eyeButton: {
     padding: 4,

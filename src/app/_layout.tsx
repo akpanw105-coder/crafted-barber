@@ -10,6 +10,26 @@ export default function RootLayout() {
   useEffect(() => {
     // Hide splash after first render
     SplashScreen.hideAsync();
+
+    if (typeof document !== 'undefined') {
+      const styleId = 'crafted-barbers-web-reset';
+      if (!document.getElementById(styleId)) {
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+          input, textarea, [contenteditable="true"] {
+            outline: none !important;
+            box-shadow: none !important;
+            border-style: none;
+          }
+          input:focus, textarea:focus, [contenteditable="true"]:focus {
+            outline: none !important;
+            box-shadow: none !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
   }, []);
 
   return (

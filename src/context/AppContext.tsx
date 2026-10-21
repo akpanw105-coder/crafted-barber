@@ -430,12 +430,22 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       const customerEmail = user?.email || 'client@crafted.com';
       const customerPhone = user?.user_metadata?.phone || '';
 
+      // Generate a human-readable date label from the selected date
+      const dateLabel = selectedDate
+        ? new Date(selectedDate + 'T12:00:00').toLocaleDateString('en-GB', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          })
+        : selectedDate;
+
       const { data, error } = await supabase.rpc('create_booking_atomic', {
         p_customer_name: customerName,
         p_customer_email: customerEmail,
         p_customer_phone: customerPhone,
         p_booking_date: selectedDate,
-        p_booking_date_label: 'Thursday, 27 Oct 2024',
+        p_booking_date_label: dateLabel,
         p_booking_time: selectedTime,
         p_total_price: totalPrice,
         p_payment_method: paymentMethod,
@@ -451,7 +461,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         customerEmail,
         customerPhone,
         date: selectedDate,
-        dateLabel: 'Thursday, 27 Oct 2024',
+        dateLabel,
         time: selectedTime,
         totalPrice,
         status: data.status,
@@ -467,6 +477,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return { booking: null, error: err };
     }
   };
+
 
   // Booking status changes
   const updateBookingStatus = async (id: string, status: Booking['status']) => {
