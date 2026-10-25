@@ -146,9 +146,6 @@ export default function CustomerPaymentScreen() {
                   <Text style={styles.badgeText}>Instant</Text>
                 </View>
               </View>
-              <Text style={styles.methodDesc}>
-                Mastercard, Visa, Verve & Apple Pay via Paystack
-              </Text>
             </View>
             <Ionicons
               name={paymentMethod === 'card' ? 'radio-button-on' : 'radio-button-off'}

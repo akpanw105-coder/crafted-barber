@@ -83,17 +83,6 @@ export default function CustomerWelcomeSignInScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
           
-          {/* Admin Quick Switch Pill */}
-          <View style={styles.topBar}>
-            <TouchableOpacity
-              style={styles.adminSwitchButton}
-              onPress={handleGoToAdmin}
-              activeOpacity={0.8}>
-              <Ionicons name="shield-checkmark-outline" size={14} color={StitchColors.primary} />
-              <Text style={styles.adminSwitchText}>Staff & Admin Portal</Text>
-            </TouchableOpacity>
-          </View>
-
           {/* Brand Emblem */}
           <View style={styles.brandContainer}>
             <View style={styles.logoBadge}>
@@ -103,11 +92,6 @@ export default function CustomerWelcomeSignInScreen() {
             <Text style={styles.headline}>
               {isSignUp ? 'Create Membership' : 'Welcome'}
             </Text>
-            {!isSignUp && (
-              <Text style={styles.tagline}>
-                Bespoke grooming sanctuary and atelier
-              </Text>
-            )}
           </View>
 
           {/* Form */}
