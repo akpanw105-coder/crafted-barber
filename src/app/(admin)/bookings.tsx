@@ -177,28 +177,36 @@ export default function AdminBookingManagementScreen() {
                     ) : (
                       <>
                         {booking.status === 'pending' && (
-                          <TouchableOpacity
-                            style={styles.confirmBtn}
-                            onPress={() => handleUpdateStatus(booking.id, 'confirmed')}
-                            activeOpacity={0.8}>
-                            <Text style={styles.confirmBtnText}>Confirm</Text>
-                          </TouchableOpacity>
+                          <>
+                            <TouchableOpacity
+                              style={styles.confirmBtn}
+                              onPress={() => handleUpdateStatus(booking.id, 'confirmed')}
+                              activeOpacity={0.8}>
+                              <Text style={styles.confirmBtnText}>Approve</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                              style={styles.cancelBtn}
+                              onPress={() => handleUpdateStatus(booking.id, 'cancelled')}
+                              activeOpacity={0.8}>
+                              <Text style={styles.cancelBtnText}>Reject</Text>
+                            </TouchableOpacity>
+                          </>
                         )}
                         {booking.status === 'confirmed' && (
-                          <TouchableOpacity
-                            style={styles.completeBtn}
-                            onPress={() => handleUpdateStatus(booking.id, 'completed')}
-                            activeOpacity={0.8}>
-                            <Text style={styles.completeBtnText}>Mark Completed</Text>
-                          </TouchableOpacity>
-                        )}
-                        {booking.status !== 'cancelled' && (
-                          <TouchableOpacity
-                            style={styles.cancelBtn}
-                            onPress={() => handleUpdateStatus(booking.id, 'cancelled')}
-                            activeOpacity={0.8}>
-                            <Text style={styles.cancelBtnText}>Cancel</Text>
-                          </TouchableOpacity>
+                          <>
+                            <TouchableOpacity
+                              style={styles.completeBtn}
+                              onPress={() => handleUpdateStatus(booking.id, 'completed')}
+                              activeOpacity={0.8}>
+                              <Text style={styles.completeBtnText}>Mark Completed</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                              style={styles.cancelBtn}
+                              onPress={() => handleUpdateStatus(booking.id, 'cancelled')}
+                              activeOpacity={0.8}>
+                              <Text style={styles.cancelBtnText}>Cancel</Text>
+                            </TouchableOpacity>
+                          </>
                         )}
                       </>
                     )}

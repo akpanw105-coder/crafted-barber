@@ -44,7 +44,7 @@ interface AppContextType {
   // Auth state
   session: Session | null;
   user: User | null;
-  userRole: 'customer' | 'admin' | null;
+  userRole: 'customer' | 'admin' | 'member' | null;
   isAdmin: boolean;
   isLoadingAuth: boolean;
   
@@ -95,7 +95,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   // Auth state
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const [userRole, setUserRole] = useState<'customer' | 'admin' | null>(null);
+  const [userRole, setUserRole] = useState<'customer' | 'admin' | 'member' | null>(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   // Data states
@@ -133,7 +133,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setUserRole('customer');
         return 'customer';
       }
-      const role = data?.role === 'admin' ? 'admin' : 'customer';
+      const role = (data?.role === 'admin' ? 'admin' : data?.role === 'member' ? 'member' : 'customer') as 'customer' | 'admin' | 'member';
       setUserRole(role);
       return role;
     } catch {
